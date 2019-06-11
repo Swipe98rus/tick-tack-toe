@@ -9,22 +9,10 @@ let scoreO = document.querySelector('#scoreO').innerHTML;
 
 
 
-//Логика игры
+//----------------- Game Rule ------------------
+
+//Подготавливаем поле к игре
 preparingField(cells);
-
-
-
-
-//Функция подготовления поля к игре
-function preparingField(cell) {
-    for (let i = 0; i < cells.length; i++) {
-        const cell = cells[i];
-        cell.addEventListener('click', nextTurn);
-        cell.innerHTML = '';
-        cell.style.color = 'white';
-    }
-
-}
 
 
 //Функция смены хода
@@ -120,10 +108,10 @@ function restartGame(fieldFilled) {
 
 
 
-
-
 //---------------- Additional functions ------------
 
+
+//Функция анимации для победной комбинации
 function winnerHighlighted(cells, win) {
     cells[win[0]].style.color = '#4cd137';
     cells[win[1]].style.color = '#4cd137';
@@ -131,6 +119,7 @@ function winnerHighlighted(cells, win) {
 }
 
 
+//Функция для ведения игрового счета
 function gameCount(winner, scoreX, scoreO) {
 
     if (winner == 'x') {
@@ -142,6 +131,7 @@ function gameCount(winner, scoreX, scoreO) {
     }
 }
 
+//Функция проверки на наличие свободной ячейки для следующего хода
 function fieldIsOver(cells) {
     for (let i = 0; i < cells.length; i++) {
         if (cells[i].innerHTML == '') {
@@ -149,4 +139,14 @@ function fieldIsOver(cells) {
         }
     }
     return true;
+}
+
+//Функция подготовления поля к игре
+function preparingField(cell) {
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+        cell.addEventListener('click', nextTurn);
+        cell.innerHTML = '';
+        cell.style.color = 'white';
+    }
 }
